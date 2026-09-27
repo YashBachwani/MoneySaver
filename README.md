@@ -2,32 +2,26 @@
 
 ## SPLIT THE MATH. NOT THE MONEY.
 
-> 📰 EXPERIMENT NO. 001  
-> One payment entered the building.  
-> Multiple simulated payments came out.  
-> Nobody panicked.  
+> 📰 EXPERIMENT NO. 001
+> One payment entered the building.
+> Multiple simulated payments came out.
+> Nobody panicked.
 > Except the calculator.
 
-<div align="center">
-  <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80" alt="Editorial money desk" width="100%" />
-</div>
+MoneySaver is a small educational demo that takes a UPI QR, reads the payment details, and shows how one total can be broken into smaller simulated payment chunks. It is not a payment processor, not a banking tool, and definitely not a secret way to outsmart the system. It is a visual experiment in understanding the math behind a payment flow.
 
-MoneySaver is a browser-based demo for visualizing how a UPI payment total can be split into smaller simulated chunks. It reads a QR image, extracts the UPI destination, lets you enter a total amount, and then breaks the math into smaller demo payment slices for easier understanding.
-
-This is not a banking app. It is not a payment system. It is not a secret trick to dodge fees or rules. It is a practical little experiment for understanding what is happening behind the numbers.
-
-Think of it like this:
+If a checkout looks like this:
 
 ₹7,500
 
-becomes:
+it can be represented as:
 
-₹2,000  
-₹2,000  
-₹2,000  
+₹2,000
+₹2,000
+₹2,000
 ₹1,500
 
-and then:
+And then:
 
 ₹2,000 + ₹2,000 + ₹2,000 + ₹1,500 = ₹7,500 ✓
 
@@ -35,74 +29,93 @@ Nothing disappeared. Nothing was created. The accountant can sleep tonight.
 
 ---
 
-# THE MONEY DESK
+# WHAT IS MONEY SAVER?
 
-## WHAT THIS IS
+MoneySaver is a browser-based demo built to make payment math easier to see and understand. The app is designed around a very simple idea: when a UPI QR includes a merchant destination and an amount, the interface can simulate how that total might be split into smaller payment amounts.
 
-MoneySaver is a small editorial product built around one question:
+It does this by:
 
-"What happens if we split it?"
+- reading a UPI QR image
+- extracting the payment destination and merchant name
+- accepting a total amount
+- choosing a maximum simulated payment size
+- generating smaller payment chunks as demo QR representations
+- checking that the total still adds up correctly
 
-Instead of burying people in financial terms, it turns the flow into something visual and understandable. Upload a UPI QR, enter the total, choose a maximum simulated payment size, and the app shows how the split could work.
+This is all for educational and demonstration purposes. It exists to help people visualize payment mechanics in plain English instead of forcing them to read six paragraphs of financial jargon while their coffee goes cold.
 
-This is built for demos, learning, and curiosity. It is designed to help users understand the logic and mechanics behind payment breakdowns without making the whole thing feel like a tax filing nightmare.
-
-Because reading six paragraphs about payment rules is not exactly a Sunday activity.
+Because reading six paragraphs about payment rules isn't exactly what we call a Sunday activity.
 
 ---
 
-## HOW IT WORKS
+# WHY WAS IT BUILT?
 
-### 01 — DROP YOUR QR
+This started with a very normal question:
 
-The user uploads a UPI QR image. The app decodes it in the browser with the QR parsing library and extracts the destination and merchant information it can read.
+"What happens if we split it?"
 
-This is a local browser flow. The app is reading a QR image, not tapping into a bank account.
+And then someone built it.
 
-### 02 — ENTER THE AMOUNT
+The goal was simple: make UPI payment math less mysterious. The site is meant to help curious users understand how a total can be broken into smaller payments, what a QR might contain, and how the underlying numbers behave when simulated in a controlled environment.
 
-The next step is simple: enter the total amount.
+It is not trying to solve taxes, fees, banking policies, or merchant compliance with a single click. It is just a clean little visual experiment built to ask: what if we made payment math easier to read?
+
+---
+
+# HOW IT WORKS
+
+## 01 — DROP YOUR QR
+
+The first step is to upload a UPI QR image. In the browser, the app tries to decode the QR code and extract the relevant UPI information. When it works, the destination and merchant details are shown on screen.
+
+This is the part where the project looks at the QR as a data source, not as a magical payment oracle.
+
+## 02 — ENTER THE AMOUNT
+
+Once the QR is recognized, the next step is to enter the total amount in rupees.
 
 Example:
 
 ₹7,500
 
-The app validates the value before the math starts. No dramatic surprises. No weird ghost numbers. Just a clean, readable total.
+The app accepts the amount and validates it before moving forward. In other words: no nonsense, no hidden math tricks, no "oops, that was actually ₹6,900" energy.
 
-### 03 — CHOOSE THE MAXIMUM
+## 03 — CHOOSE THE MAXIMUM
 
-The user then picks the maximum simulated payment amount.
+Then the user picks the maximum simulated payment size.
 
 Example:
 
 ₹2,000
 
-That sets the largest chunk the app will generate in the split. Think of it as controlling the size of each imaginary payment slice.
+This decides how large each split can be before the app starts creating the next one. It is a visual control for the experiment, not a payment rulebook.
 
-### 04 — LET THE MATH COOK
+## 04 — LET THE MATH COOK
 
-Once the inputs are set, the app calculates the split. A result might look like this:
+Once the amount and maximum are in place, the app calculates the split and builds a result like this:
 
-Payment 01 → ₹2,000  
-Payment 02 → ₹2,000  
-Payment 03 → ₹2,000  
+Payment 01 → ₹2,000
+Payment 02 → ₹2,000
+Payment 03 → ₹2,000
 Payment 04 → ₹1,500
 
-Then it checks the total:
+Then the app checks the total:
 
 ₹2,000 + ₹2,000 + ₹2,000 + ₹1,500 = ₹7,500 ✓
 
-That is the whole point of the experiment: make the mathematics easy to see instead of easy to ignore.
+It is a conceptual payment breakdown, not a real transaction. The goal is to make the logic visible and understandable.
 
 ---
 
 # QR FUNCTIONALITY
 
-The app can decode an uploaded UPI QR and extract information like the destination UPI ID and the merchant name. It also uses that data to generate demo QR representations for each simulated split.
+MoneySaver can decode an uploaded UPI QR and extract basic payment information such as the UPI ID and merchant name. That data is then used to populate the interface and generate simulated QR representations for each split.
 
-The generated split cards preserve the original destination where possible, so the visual flow still feels like the same payment context. That does not mean the app is processing real payments. It is generating simulated QR representations for demonstration purposes.
+The app preserves the original destination information when it builds the demo QR representations, which helps keep the generated cards visually aligned with the source payment context. In plain English: the demo split cards still point at the same destination, but they are clearly part of a simulation.
 
-This is educational tooling, not a transaction engine.
+This should be read as a demo setup for learning and experimentation, not as a live payment system. The app does not send or complete real transactions.
+
+The wording in the interface is intentionally clear: these are generated demo QR representations, not real payment instructions.
 
 ---
 
@@ -110,7 +123,7 @@ This is educational tooling, not a transaction engine.
 
 NO.
 
-The app does not ask for:
+MoneySaver does not ask for:
 
 - UPI PIN
 - OTP
@@ -118,23 +131,23 @@ The app does not ask for:
 - card number
 - CVV
 - internet banking credentials
-- your life story in exchange for a calculator
+- your emotional support during tax season
 
-The QR decoding and processing happens in the browser. The app is not built to access bank accounts, complete transactions, or collect payment credentials.
+The QR processing in the app happens on the client side in the browser. The app is designed to read a QR image and analyze its content locally; it does not ask for financial credentials as part of the flow.
 
 We don't need your financial life story.
 
-That does not mean you should upload random files without thinking. It just means the project is intentionally designed to stay out of your banking flow and keep the experimentation to the browser layer.
+That said, this is a demo project and should still be treated with common sense. If you upload a QR image, you are deciding what information you are sharing with the app in your browser environment.
 
 ---
 
 # DEMO MODE
 
-MoneySaver includes a demo mode for people who want to play without a QR image.
+There is a built-in demo mode for testing the experience without needing a real QR image.
 
-It loads a fictional UPI setup and an example amount so the split engine can be tested instantly. It is fake money. Which means: perfect.
+Click the demo button and the app loads a sample UPI flow with a total like ₹7,500 and a max payment size of ₹2,000. It is fake money. Which means: perfect.
 
-This is the cleanest way to see how the app behaves without needing a live QR in the room.
+This is a good way to see how the split engine behaves without needing a live QR scan at the moment.
 
 ---
 
@@ -142,45 +155,46 @@ This is the cleanest way to see how the app behaves without needing a live QR in
 
 ## 🧑‍💻 DEVELOPERS
 
-For people who see a QR code and instantly think: "I wonder what the machine actually sees."
+For people who look at a QR code and immediately think: "I wonder what's actually inside this thing."
 
 ## 🎓 STUDENTS
 
-For anyone learning how payment data is represented, how totals behave, and why payment math can be more confusing than it should be.
+For anyone learning how payment data is represented, how totals are calculated, and why payment flows can feel more confusing than they should.
 
 ## 🧠 CURIOUS USERS
 
-For anyone who wants a clearer explanation of split logic without reading 12 paragraphs of fintech filler.
+For the people who want to understand the math behind payment breakdowns without reading a 30-page fintech PDF written by a sleep-deprived intern.
 
 ## 🏪 MERCHANTS & BUSINESS OWNERS
 
-For operators who want a simple visual explanation of payment breakdowns and simulated split mechanics without diving straight into provider jargon.
+For operators who want a clearer, visual explanation of how a total can be represented in smaller simulated chunks without diving straight into payment-provider jargon.
 
 ---
 
 # DESIGN PHILOSOPHY
 
-MoneySaver looks the way it does on purpose.
+MoneySaver does not look like a normal fintech tool, and that is intentional.
 
-Normal fintech websites already have enough gradients, glass cards, and suspiciously rounded rectangles. This one leans into a newspaper/editorial rhythm with engineering-notebook energy and a little Gen-Z visual chaos.
+Normal fintech websites already have enough gradients, glass cards, and suspiciously rounded rectangles. This one leans into a newspaper/editorial rhythm, a sketchbook engineering aesthetic, and a little Gen-Z chaos energy.
 
-The aesthetic mixes:
+The visual direction mixes:
 
 - newspaper and editorial layouts
-- hand-drawn illustration language
+- engineering notebook energy
+- hand-drawn illustration details
 - black and off-white surfaces
-- yellow highlighter accents
+- yellow highlight accents
 - thick borders and hard shadows
 - bold typography
-- playful but confident personality
+- playful product personality
 
-It feels like a financial experiment that escaped a design brief and became better because of it.
+The result feels a bit like a financial experiment that escaped a design brief and became more interesting because of it.
 
 ---
 
-# THE CAST
+# MONEY SAVER CHARACTERS
 
-The UI includes illustrated characters to make the experience more memorable and easier to read.
+The interface includes illustrated characters to make the payment story more readable and memorable. These are fictional editorial personas used to give the product a clearer point of view.
 
 ### THE SHOPKEEPER
 
@@ -202,7 +216,7 @@ The UI includes illustrated characters to make the experience more memorable and
 
 "Scan me."
 
-These are fictional editorial characters, not endorsements, not public-figure statements, and not real financial guidance.
+These characters are part of the site's editorial language, not real endorsements or public-personality statements. They are there to help the interface feel human, not to pretend to be the financial system.
 
 ---
 
@@ -220,19 +234,21 @@ It:
 - does not replace payment providers
 - does not provide financial, tax, banking, or legal advice
 
-Please follow applicable laws, regulations, and payment-provider terms. Please do not turn our little Sunday experiment into a banking incident.
+Please follow applicable laws, regulations, and payment-provider terms. Do not turn our little Sunday experiment into a banking incident.
 
 ---
 
 # REAL-WORLD PAYMENT RULES
 
-MoneySaver is designed to visualize payment calculations and mechanics. It is not a method to evade payment rules, sidestep charges, or pretend compliance is optional.
+MoneySaver is designed to visualize payment calculations and mechanics. It does not claim to beat payment rules, sidestep charges, or magically avoid compliance issues.
 
-Real payment systems have their own fees, merchant conditions, compliance requirements, and operational constraints. Those rules vary by provider, geography, and use case. This project is a learning tool, not an instruction manual for bypassing them.
+Real payment systems have their own fees, merchant rules, regulatory requirements, and operational constraints. Those rules vary by provider, geography, and use case. This project is not a guide to circumventing them.
+
+It is a tool for understanding the math and the flow, not a method for evading payment policies.
 
 ---
 
-# EXAMPLES FROM THE DESK
+# EXAMPLE / CALCULATION SECTION
 
 ### ₹1,000
 
@@ -244,17 +260,17 @@ Result:
 
 Result:
 
-₹2,000  
-₹2,000  
+₹2,000
+₹2,000
 ₹500
 
 ### ₹7,500
 
 Result:
 
-₹2,000  
-₹2,000  
-₹2,000  
+₹2,000
+₹2,000
+₹2,000
 ₹1,500
 
 ### ₹10,000
@@ -269,17 +285,17 @@ At this point the calculator started questioning its career.
 
 # MONEY SAVER — PROJECT STATUS
 
-QR DECODING          ✓  
-AMOUNT CALCULATION   ✓  
-SPLIT ENGINE         ✓  
-SIMULATED QR         ✓  
-RESPONSIVE UI        ✓  
-HAND-DRAWN CHAOS     ✓  
+QR DECODING          ✓
+AMOUNT CALCULATION   ✓
+SPLIT ENGINE         ✓
+SIMULATED QR         ✓
+RESPONSIVE UI        ✓
+HAND-DRAWN CHAOS     ✓
 
-FINANCIAL WISDOM     ????  
+FINANCIAL WISDOM     ????
 SUNDAY PRODUCTIVITY  QUESTIONABLE
 
-The project currently covers the core demo flow: upload a QR, read the destination details, enter an amount, simulate a split, and generate demo QR representations. If something is missing, it is not being disguised as complete.
+The app covers the core demo experience as built in this project: upload a QR, read the UPI information, enter an amount, split it, and generate simulated QR representations. If something is missing, it is not being disguised as complete.
 
 ---
 
@@ -310,6 +326,6 @@ Then open the local Vite URL in your browser and let the math do its thing.
 
 ---
 
-MoneySaver is a tiny product with a sharp point of view: part payment experiment, part editorial joke, part calculator with a conscience. It exists to make money math feel a bit less mysterious and a bit more human.
+MoneySaver is a tiny product with a big attitude: part payment experiment, part editorial joke, part calculator with a conscience. It exists to make money math feel a little less intimidating and a little more understandable.
 
 The QR is only the beginning. The real story is the split.
